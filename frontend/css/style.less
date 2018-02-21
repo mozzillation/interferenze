@@ -1,0 +1,233 @@
+/* —————————————
+VARIABLES
+————————————— */
+@import url('https://fonts.googleapis.com/css?family=Archivo:400,700');
+@font:    'Archivo', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue, sans-serif;
+
+@black:   #000000;
+@white:   #FFFFFF;
+@grey:    #D5D4D9;
+@green:   lighten(#626262, 20);
+@green-light: 	lighten(#CED4D4, 10);
+
+@max-w:   1200px;
+
+@mobile: ~ "only screen and (max-width: 600px)";
+@tablet: ~ "only screen and (max-width: 768px)";
+
+/* —————————————
+GLOBAL
+————————————— */
+*{box-sizing: border-box;}
+a{color: inherit; text-decoration: none;}
+
+body{width: 100%; height: auto; margin: 0; padding: 0; border: 0; font-size: 100%; font-family: @font;
+	color: @black; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; font-weight: 400; letter-spacing: 0.05em; word-spacing: 0.001em;}
+
+.container{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 50px; position: relative; overflow: hidden;
+  @media @mobile{padding: 0px 25px;}
+}
+.divider{width: 100%; height: 1px; background-color: @green-light; margin: 50px auto; clear: both;}
+.clear{clear: left;}
+
+
+/* —————————————
+HEADER
+————————————— */
+.header{width: 100%; font-size: 16px;  line-height: 25px; z-index: 100000000000;
+
+	a{transition: opacity 0.25s ease-in-out, border-color 0.25s ease-in-out;
+		&:hover{opacity: 0.6}
+	}
+
+  .container{padding: 0px 50px;  display: flex; align-items: flex-start; align-content: flex-start; flex-direction: row;  flex-wrap: nowrap;
+    @media @tablet{align-items: center;}
+    @media @mobile{padding: 0px 25px; margin-bottom: 25px;}
+  }
+  &__logo{font-weight: 700; text-transform: uppercase; flex-grow: 2; padding: 50px 0 75px;
+    @media @mobile{padding: 25px 0;}
+    span{color: @green; font-weight: 400; text-transform: lowercase;
+      @media @mobile{display: block;}
+    }
+  }
+  &__search{ flex: auto; flex-grow: 0; padding: 50px 0 75px;
+    @media @tablet{display: none;}
+    li{color: @green; list-style: none;}
+  }
+
+
+  &__menu_mobile{display: none;
+    @media @tablet{display: block;}
+    .menu-box-1{width: 20px;height: 20px;
+      *{fill: @green; transition: fill 0.05s ease-in-out;}
+      &:hover{*{fill: @black;}}
+    }
+
+  }
+
+  &__menu_desktop{flex: auto; flex-grow: 0; padding: 30px 10px;
+    @media @tablet{display: none;}
+
+    li{float: left; color: @black; padding: 20px 10px; list-style: none; position: relative; z-index: 100000;
+      &.current-menu-item a{border-bottom: 1px solid @grey;}
+			a{padding-bottom: 5px; border-bottom: 1px solid @white;
+			}
+      &:hover{ul{visibility: visible; opacity: 1; transform: translate(0, 0);}}
+      ul{list-style: none; position: absolute; top: 55px; left: 10px; padding: 0; margin: 0; width: auto; white-space: nowrap;  background-color: @black;  padding: 10px; z-index: 1000000; visibility: hidden; opacity: 0; transform: translate(10px, 10px); transition: opacity 0.05s ease-in-out, transform 0.05s ease-in-out, visibility 0.05s ease-in-out; box-shadow: 5px 5px 0px @green;
+
+        li{list-style: none; padding: 0; margin: 0; color: @white; font-size: 14px; text-transform: uppercase; color: @green; transition: color 0.05s ease-in-out;
+          &:hover{color: @white;}
+        }
+      }
+
+    }
+  }
+}
+
+.search{width: auto; padding: 50px 0; z-index: 10000000; margin-bottom: 0px; position: fixed; top: 0px;  right: 0; bottom: 0; left: 0; transition: transform 0.05s ease-in-out, opacity 0.05s ease-in-out, visibility 0.05s ease-in-out; opacity: 0; visibility: hidden; transform: translate(20px, 20px);
+	&__overlay{background-color: fade(@black, 50); position: fixed; top: 0; right: 0; bottom: 0; left: 0;}
+	.container{ width: 50%; background-color: @green-light; position: absolute; top: 0; right: 0; bottom: 0; padding: 50px;  transition: transform 0.05s ease-in-out;}
+	&.is-open{ opacity: 1; visibility: visible; transform: translate(0px, 0px);
+	}
+
+  form{ padding: 0; border: 0; margin: 0; text-overflow: ellipsis;
+    label{color: @green; overflow: hidden; margin-bottom: 10px; display: block;}
+    input{width: 100%; border: 0; outline: 0; background: transparent; font-family: @font; font-size: 36px; margin: 0; padding: 0; letter-spacing: 0.05em; border-bottom: 1px solid @green; padding: 10px 0;  text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+    }
+  }
+}
+
+.menu__mobile{
+	position: fixed; top: 0px; bottom: 0; left: 0; right: 0; width: 100%; overflow: hidden; background-color: @green-light; padding: 25px; z-index: 10000000; font-size: 32px; line-height: 48px; list-style: none; transition: transform 0.05s ease-in-out, opacity 0.05s ease-in-out, visibility 0.05s ease-in-out; opacity: 0; visibility: hidden; transform: translate(20px, 20px);
+	&_close{ margin-bottom: 25px; border-bottom: 1px solid @green; text-align: right; padding: 12.5px 0px 25px 0px;
+		img{width: 20px;height: 20px;}
+	}
+	&.is-open{ opacity: 1; visibility: visible; transform: translate(0px, 0px);}
+}
+
+/* ————————————————————————————————————————————————————
+HOME - MAIN ARTICLE
+———————————————————————————————————————————————————— */
+.main{overflow: hidden; z-index: -10000 !important;
+  &__meta{width: 400px; float: right; padding: 0px; display: flex; flex-direction: column; min-height: 500px; position: relative; justify-content: space-between; background-color: @white;
+      @media @tablet{width: 300px; }
+      @media @mobile{float: none; width: 100%; min-height: auto; background-color: @black; padding: 25px;}
+    &_place{color: @green; text-transform: uppercase; width: auto; font-size: 14px;
+			span{border-top: 1px solid @green; padding-top: 10px; display: inline-block;}
+		}
+    &_title{ width: 100%;   flex-basis: auto; color: @black;
+      h1{font-size: 36px; font-weight: 400; margin-top: 0; margin-bottom: 0px; line-height: 46px; position: relative;
+          @media @mobile{font-size: 22px; line-height: 32px; color: @white}
+        // &:after{position: absolute; height: 1px; background-color: @white; bottom: -4px; left: 0px; z-index: 1000; content: ''; width: 50px; left: 0;}
+      }
+      h2{font-size: 36px; font-weight: 400; margin: 0; line-height: 46px; font-weight: 400; color: @green;
+				  @media @mobile{font-size: 22px; line-height: 32px;}
+				}
+        @media @mobile{padding: 50px 0;}
+    }
+    &_view{color: @green; width: 100%; position: relative;
+      span{border-bottom: 1px solid @green; display: block; float: left; padding-bottom: 5px;}
+    }
+  }
+  &__thumb{width: calc(~"100% - 400px"); background-color: @green; height: 500px; float: right; background-size: cover; background-position: center;
+      @media @tablet{width: calc(~"100% - 300px");}
+    @media @mobile{float: none; width: 100%; height: auto; padding-bottom: 100%;}
+    &_triangle{width: 0; height: 0; border-bottom: 500px solid @white; border-right: 100px solid transparent;
+      @media @mobile{display: none;}
+    }
+  }
+}
+
+
+.projects{padding: 50px 25px; text-align: center; border: 1px solid @black; margin: 100px auto; position: relative; background: @white;
+	@media @mobile{padding: 50px 0;}
+
+
+	&::before{ border: 1px solid @black; content: ' '; top: 10px; left: 10px; right: -10px; bottom: -10px; position: absolute; z-index: -10; background-color: @white;
+	@media @mobile {top: 6px; left: 6px; right: -6px; bottom: -6px;}
+	}
+	&::after{ border: 1px solid @black; content: ' '; top: 20px; left: 20px; right: -20px; bottom: -20px; position: absolute; z-index: -20;
+		@media @mobile {top: 11px; left: 11px; right: -11px; bottom: -11px;}
+	}
+
+	&__title{width: 100%; text-align: center; padding-bottom: 100px;
+		@media @mobile{padding-bottom: 100px;}
+		h1{font-size: 36px; line-height: 46px; font-weight: 400; margin: 0; margin-bottom: 10px;}
+		span{ color: @green; border-bottom: 1px solid @green; padding-bottom: 5px;}
+	}
+	&__article{width: 50%; float: left; padding: 0px 25px; position: relative;
+		@media @mobile{width: 100%;
+			&:first-child{margin-bottom: 100px;}
+		}
+		&:first-child{margin-right: 0%;}
+		&:hover .projects__article_thumb img{transform: translate(-10px, -10px);}
+
+		&_thumb{margin: 25px 0; background-color: @black;
+			img{width: 100%; display: block; height: auto; transition: transform 0.05s ease-in-out;}
+		}
+		&_place{color: @green; text-transform: uppercase; width: 100%; font-size: 14px;}
+		&_meta{
+			h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 10px; line-height: 30px; position: relative;
+          @media @mobile{font-size: 22px; line-height: 32px;}
+        &:after{position: absolute; height: 1px; background-color: @white; bottom: -4px; left: 0px; z-index: 1000; content: ''; width: 50px; left: 0;}
+      }
+      p{font-size: 14px; font-weight: 400; margin: 0; line-height: 22px; font-weight: 400; }
+        @media @mobile{padding: 0px 0;}
+		}
+
+	}
+}
+
+.journal{ overflow: hidden;
+	&.container{padding: 0px 15px 50px 15px;
+		@media @mobile{padding: 0px 25px;}
+	}
+	&__title{width: 100%; text-align: center; padding-bottom: 100px;
+		@media @mobile{padding-bottom: 100px;}
+		h1{font-size: 36px; line-height: 46px; font-weight: 400; margin: 0; margin-bottom: 10px;}
+		span{ color: @green; border-bottom: 1px solid @green; padding-bottom: 5px;}
+	}
+
+	&__article{overflow: hidden; width: 33.33333%; float: left; position: relative; padding: 0px 35px;
+		@media @mobile{width: 100%; padding: 0px 0px 50px 0;}
+		&_meta{
+			h1{text-transform: capitalize; font-size: 14px; line-height: 24px; font-weight: 400; margin-bottom: 0;}
+			span{color: @green; font-size: 14px; line-height: 24px;}
+		}
+		img{width: 100%; height: auto; display: block;}
+	}
+}
+
+.newsletter{ padding: 25px; background: @green-light;margin-bottom: 100px; overflow: hidden; width: 100%; position: relative;
+	@media @mobile{width: 100%;}
+	&__icon{ position: absolute; right: 50px; top: 50px;
+		img{width: 50px; height: 50px;}
+	}
+	&__text{font-size: 22px; font-weight: 400; width: 70%; line-height: 30px; margin-bottom: 50px;}
+	&__input{ position: relative; width: 100%;  background-color: transparent;
+		&_name, &_mail{width: 100%; display: block; border: 0px; outline: none; line-height: 30px; font-size: 22px; border: none; background: transparent; margin-bottom: 10px; border-bottom: 1px solid @green; font-family: @font; padding: 5px 5px 10px 5px;
+		}
+
+		input:-webkit-autofill,
+		input:-webkit-autofill:hover,
+		input:-webkit-autofill:focus,
+		input:-webkit-autofill:active {
+		    transition: background-color 5000s ease-in-out 0s;
+		    -webkit-text-fill-color: transparent !important;
+		}
+
+	}
+}
+
+.footer{padding: 100px 0px 50px 0; clear: both; background-color: @green-light; font-size: 14px; line-height: 24px;
+	&__top{ padding-bottom: 50px; clear: both; overflow: hidden; position: relative;
+		@media @tablet{padding-bottom: 0;}
+		&_col{width: 50%; float: left; padding-right: 10%; position: relative;
+			@media @tablet{width: 100%; margin-bottom: 25px; padding-right: 0;}
+			li{list-style: none; color: @green;}
+		}
+	}
+
+	&__bottom{text-transform: uppercase; font-size: 12px; letter-spacing: 0.1em; padding-top: 0px; color: @green;}
+
+}

@@ -14,7 +14,6 @@
  */
 get_header(); ?>
 
-	<!-- delete this code -->
-	<div class="temp"><div class="intro"><a href="https://onepagelove.com/una">Una</a> is a One Page starter theme for WordPress with no posts, archives, comments or styles.</div><div class="instructions">Either start editing index.php or head over to...<ul><li>Dashboard</li><li>Settings</li><li>Reading</li><li>Front Page Displays</li><li>A Static Page</li><li>Front Page:</li><li>Choose a Page</li></ul>✌</div></div>
+
 
 <?php get_footer(); ?>
