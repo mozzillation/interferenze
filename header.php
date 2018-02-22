@@ -32,7 +32,7 @@
 					</a>
         </div>
         <div class="header__menu_desktop">
-					<?php wp_nav_menu( array( 'container'=> false, 'items_wrap' => '%3$s', 'menu_class'=> false, 'theme_location' => 'header-menu', 'container_class' => '' ) );?> 
+					<?php wp_nav_menu( array( 'container'=> false, 'items_wrap' => '%3$s', 'menu_class'=> false, 'theme_location' => 'header-menu', 'container_class' => '' ) );?>
         </div>
         <div class="header__search">
           <li>Search</li>
@@ -56,11 +56,8 @@
 
 			<div class="menu__mobile">
 				<div class="menu__mobile_close">
-					<img src="assets/img/close.svg" />
+					<img src="<?php bloginfo('stylesheet_directory')?>/frontend/img/close.svg" />
 				</div>
-				<li class="active">Project</li>
-				<li>Publications</li>
-				<li>Journal</li>
-				<li>About</li>
+				<?php wp_nav_menu( array( 'container'=> false, 'items_wrap' => '%3$s', 'menu_class'=> false, 'theme_location' => 'header-menu', 'container_class' => '' ) );?>
 			</div>
     </header>

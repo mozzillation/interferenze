@@ -109,6 +109,10 @@ HEADER
 HOME - MAIN ARTICLE
 ———————————————————————————————————————————————————— */
 .main{overflow: hidden; z-index: -10000 !important;
+	a{transition: opacity 0.25s ease-in-out; display: block; overflow: hidden;
+		&:hover{opacity: 0.8;}
+	}
+
   &__meta{width: 400px; float: right; padding: 0px; display: flex; flex-direction: column; min-height: 500px; position: relative; justify-content: space-between; background-color: @white;
       @media @tablet{width: 300px; }
       @media @mobile{float: none; width: 100%; min-height: auto; background-color: @black; padding: 25px;}
@@ -129,15 +133,20 @@ HOME - MAIN ARTICLE
       span{border-bottom: 1px solid @green; display: block; float: left; padding-bottom: 5px;}
     }
   }
-  &__thumb{width: calc(~"100% - 400px"); background-color: @green; height: 500px; float: right; background-size: cover; background-position: center;
+  &__thumb{width: calc(~"100% - 400px"); height: 500px; float: right; position: relative; background-color: @black;
       @media @tablet{width: calc(~"100% - 300px");}
     @media @mobile{float: none; width: 100%; height: auto; padding-bottom: 100%;}
-    &_triangle{width: 0; height: 0; border-bottom: 500px solid @white; border-right: 100px solid transparent;
+		&_img{position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center;}
+    &_triangle{width: 0; height: 0; border-bottom: 500px solid @white; border-right: 100px solid transparent; z-index: 1000; position: absolute; left: 0; bottom: 0; top: 0;
       @media @mobile{display: none;}
     }
   }
 }
 
+
+/* ————————————————————————————————————————————————————
+HOME - OTHER PROJECTS
+———————————————————————————————————————————————————— */
 
 .projects{padding: 50px 25px; text-align: center; border: 1px solid @black; margin: 100px auto; position: relative; background: @white;
 	@media @mobile{padding: 50px 0;}
@@ -160,17 +169,24 @@ HOME - MAIN ARTICLE
 			&:first-child{margin-bottom: 100px;}
 		}
 		&:first-child{margin-right: 0%;}
-		&:hover .projects__article_thumb img{transform: translate(-10px, -10px);}
+		a:hover {
+			.projects__article_meta, .projects__article_place{opacity: 0.8;}
+			.projects__article_thumb_img{transform: translate(-10px, -10px);}
+		}
 
 		&_thumb{margin: 25px 0; background-color: @black;
-			img{width: 100%; display: block; height: auto; transition: transform 0.05s ease-in-out;}
+			&_img{width: 100%; display: block; height: auto; transition: transform 0.05s ease-in-out; padding-bottom: 75%; background-size: cover; background-position: center center;}
 		}
-		&_place{color: @green; text-transform: uppercase; width: 100%; font-size: 14px;}
-		&_meta{
-			h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 10px; line-height: 30px; position: relative;
+		&_place{color: @green; text-transform: uppercase; width: 100%; font-size: 14px; transition: opacity 0.25s ease-in-out;}
+		&_meta{ transition: opacity 0.25s ease-in-out;
+			h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative;
           @media @mobile{font-size: 22px; line-height: 32px;}
         &:after{position: absolute; height: 1px; background-color: @white; bottom: -4px; left: 0px; z-index: 1000; content: ''; width: 50px; left: 0;}
       }
+			h2{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0px; line-height: 30px; position: relative; color: @green;
+					@media @mobile{font-size: 22px; line-height: 32px;}
+				&:after{position: absolute; height: 1px; background-color: @white; bottom: -4px; left: 0px; z-index: 1000; content: ''; width: 50px; left: 0;}
+			}
       p{font-size: 14px; font-weight: 400; margin: 0; line-height: 22px; font-weight: 400; }
         @media @mobile{padding: 0px 0;}
 		}
@@ -178,7 +194,16 @@ HOME - MAIN ARTICLE
 	}
 }
 
+/* ————————————————————————————————————————————————————
+HOME - JOURNAL
+———————————————————————————————————————————————————— */
+
 .journal{ overflow: hidden;
+
+	a{transition: opacity 0.25s ease-in-out; display: block;
+		&:hover{opacity: 0.8;}
+	}
+
 	&.container{padding: 0px 15px 50px 15px;
 		@media @mobile{padding: 0px 25px;}
 	}
@@ -190,11 +215,14 @@ HOME - MAIN ARTICLE
 
 	&__article{overflow: hidden; width: 33.33333%; float: left; position: relative; padding: 0px 35px;
 		@media @mobile{width: 100%; padding: 0px 0px 50px 0;}
-		&_meta{
-			h1{text-transform: capitalize; font-size: 14px; line-height: 24px; font-weight: 400; margin-bottom: 0;}
+		&_meta{padding-top: 10px;
+			h1{text-transform: capitalize; font-size: 14px; line-height: 24px; font-weight: 400; margin: 0;}
 			span{color: @green; font-size: 14px; line-height: 24px;}
 		}
-		img{width: 100%; height: auto; display: block;}
+		&_thumb{background-color: @black;
+			&_img{width: 100%; height: auto; display: block; padding-bottom: 75%; background-size: cover; background-position: center center;}
+		}
+
 	}
 }
 
@@ -204,22 +232,32 @@ HOME - MAIN ARTICLE
 		img{width: 50px; height: 50px;}
 	}
 	&__text{font-size: 22px; font-weight: 400; width: 70%; line-height: 30px; margin-bottom: 50px;}
+	&__status{color: @green; margin-top: 10px; font-size: 12px; line-height: 18px;}
 	&__input{ position: relative; width: 100%;  background-color: transparent;
-		&_name, &_mail{width: 100%; display: block; border: 0px; outline: none; line-height: 30px; font-size: 22px; border: none; background: transparent; margin-bottom: 10px; border-bottom: 1px solid @green; font-family: @font; padding: 5px 5px 10px 5px;
+		&_name, &_lastname, &_mail, &_send{width: 100%; display: block; border: 0px; outline: none; line-height: 24px; font-size: 16px; border: none; background: transparent; margin-bottom: 10px; border-bottom: 1px  solid @green; font-family: @font; padding: 5px 5px 10px 5px; letter-spacing: 0.05em;
+		}
+
+		&_send{background-color: fade(@green, 20); border: 0; color: @green; padding: 15px; transition: background-color 0.25s ease-in-out;
+			&:hover{background-color: fade(@green, 30);}
 		}
 
 		input:-webkit-autofill,
 		input:-webkit-autofill:hover,
 		input:-webkit-autofill:focus,
 		input:-webkit-autofill:active {
-		    transition: background-color 5000s ease-in-out 0s;
-		    -webkit-text-fill-color: transparent !important;
+		    transition: background-color 5000s ease-in-out 0s; letter-spacing: 0.05em;
+		    -webkit-text-fill-color: @black !important;
 		}
 
 	}
 }
 
 .footer{padding: 100px 0px 50px 0; clear: both; background-color: @green-light; font-size: 14px; line-height: 24px;
+
+	a{transition: color 0.25s ease-in-out;
+		&:hover{color: @black;}
+	}
+
 	&__top{ padding-bottom: 50px; clear: both; overflow: hidden; position: relative;
 		@media @tablet{padding-bottom: 0;}
 		&_col{width: 50%; float: left; padding-right: 10%; position: relative;
