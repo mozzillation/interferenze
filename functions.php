@@ -4,14 +4,14 @@
  * @package una
  * @since una 1.0.5
  * @license GPL 2.0
- * 
+ *
  */
 
 # ------------------------------------------------------------------------
 # Theme definitions
 # ------------------------------------------------------------------------
 
-define( 'una_theme_version' , '1.0.5' );  				# Theme version
+define( 'interferenze_theme_version' , '1.0.5' );  				# Theme version
 if ( ! isset( $content_width ) ) $content_width = 640;  # Content Width
 
 # ------------------------------------------------------------------------

@@ -13,7 +13,11 @@
   <div class="container">
     <div class="footer__top">
       <div class="footer__top_col">
-        Interferenze is a platform of research – founded in 2003 – focused on sound, art, techocultures and the rural, for projects taking place in different rural regions of Southern Italy: Irpinia, Fortore beneventano and Puglia (Barsento-Trulli area).
+        <?php if(qtrans_getLanguage() == "it") : ?>Interferenze è una piattaforma di ricerca che si occupa di suono, arti, tecnoculture e ruralità, fondata nel 2003 a San Martino Valle Caudina, un piccolo borgo rurale della provincia interna del meridione d’Italia.
+        <?php endif ?>
+        <?php if(qtrans_getLanguage() == "en") : ?>Interferenze is a platform of research – founded in 2003 – focused on sound, art, techocultures and the rural, for projects taking place in different rural regions of Southern Italy: Irpinia, Fortore beneventano and Puglia (Barsento-Trulli area).
+        <?php endif ?>
+
       </div>
       <div class="footer__top_col">
         <div class="footer__top_col">
@@ -29,7 +33,8 @@
     </div>
   </div>
 </footer>
-
+</div>
+</div>
 <?php wp_footer(); ?>
 
 </body>

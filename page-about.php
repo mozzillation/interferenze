@@ -10,16 +10,12 @@ get_header(); ?>
   $url = $url_array[0];
 
   ?>
-  <div class="standard_page">
+  <div class="about">
+    <div class="about__image lazy" data-src="<?php echo $url;?>"></div>
     <div class="container">
-			<div class="standard_page__container">
-				<div class="standard_page__title">
-					<?php the_title();?>
-				</div>
-	      <div class="standard_page__text">
-	        <?php the_content();?>
-	      </div>
-			</div>
+      <div class="about__text">
+        <?php the_content();?>
+      </div>
       </div>
   </div>
 <?php endwhile; endif;?>

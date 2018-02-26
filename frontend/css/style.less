@@ -1,13 +1,12 @@
 /* —————————————
 VARIABLES
 ————————————— */
-@import url('https://fonts.googleapis.com/css?family=Archivo:400,700');
+@import url('https://fonts.googleapis.com/css?family=Archivo|Roboto+Mono');
 @font:    'Archivo', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue, sans-serif;
 
 @black:   #000000;
 @white:   #FFFFFF;
-@grey:    #D5D4D9;
-@green:   lighten(#626262, 20);
+@green:   lighten(#626262, 35);
 @green-light: 	lighten(#CED4D4, 10);
 
 @max-w:   1200px;
@@ -25,29 +24,32 @@ body{width: 100%; height: auto; margin: 0; padding: 0; border: 0; font-size: 100
 	color: @black; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; font-weight: 400; letter-spacing: 0.05em; word-spacing: 0.001em;}
 
 .container{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 50px; position: relative; overflow: hidden;
-  @media @mobile{padding: 0px 25px;}
+  @media @mobile{padding: 0px 20px;}
 }
 .divider{width: 100%; height: 1px; background-color: @green-light; margin: 50px auto; clear: both;}
 .clear{clear: left;}
 
+#page{overflow: hidden; position: relative; transition: opacity 0.25s ease-in-out;
+	&.is-exiting{opacity: 0;}
+}
 
 /* —————————————
 HEADER
 ————————————— */
-.header{width: 100%; font-size: 16px;  line-height: 25px; z-index: 100000000000;
+.header{width: 100%; font-size: 16px;  line-height: 25px;
 
 	a{transition: opacity 0.25s ease-in-out, border-color 0.25s ease-in-out;
 		&:hover{opacity: 0.6}
 	}
 
   .container{padding: 0px 50px;  display: flex; align-items: flex-start; align-content: flex-start; flex-direction: row;  flex-wrap: nowrap;
-    @media @tablet{align-items: center;}
-    @media @mobile{padding: 0px 25px; margin-bottom: 25px;}
+    @media @tablet{padding: 0px 25px; margin-bottom: 25px; display: block;}
   }
-  &__logo{font-weight: 700; text-transform: uppercase; flex-grow: 2; padding: 50px 0 75px;
-    @media @mobile{padding: 25px 0;}
+  &__logo{ flex-grow: 2; padding: 50px 0 75px;
+		a{display: block;}
+    @media @tablet{padding: 25px 0; float: left; flex-grow: 0; line-height: 22px;}
     span{color: @green; font-weight: 400; text-transform: lowercase;
-      @media @mobile{display: block;}
+      @media @tablet{display: block;}
     }
   }
   &__search{ flex: auto; flex-grow: 0; padding: 50px 0 75px;
@@ -56,7 +58,7 @@ HEADER
   }
 
 
-  &__menu_mobile{display: none;
+  &__menu_mobile{display: none; margin: 37px 0px 0 0; float: right;
     @media @tablet{display: block;}
     .menu-box-1{width: 20px;height: 20px;
       *{fill: @green; transition: fill 0.05s ease-in-out;}
@@ -65,11 +67,12 @@ HEADER
 
   }
 
-  &__menu_desktop{flex: auto; flex-grow: 0; padding: 30px 10px;
+  &__menu_desktop{flex: auto; flex-grow: 0; padding: 30px 0px 30px 10px;
     @media @tablet{display: none;}
 
-    li{float: left; color: @black; padding: 20px 10px; list-style: none; position: relative; z-index: 100000;
-      &.current-menu-item a{border-bottom: 1px solid @grey;}
+    li{float: left; color: @black; padding: 20px 10px; list-style: none; position: relative;
+      &.current-menu-item a{border-bottom: 1px solid @green;}
+			&.qtranxs-lang-menu{padding-right: 0; color: @green;}
 			a{padding-bottom: 5px; border-bottom: 1px solid @white;
 			}
       &:hover{ul{visibility: visible; opacity: 1; transform: translate(0, 0);}}
@@ -77,6 +80,7 @@ HEADER
 
         li{list-style: none; padding: 0; margin: 0; color: @white; font-size: 14px; text-transform: uppercase; color: @green; transition: color 0.05s ease-in-out;
           &:hover{color: @white;}
+
         }
       }
 
@@ -98,11 +102,11 @@ HEADER
 }
 
 .menu__mobile{
-	position: fixed; top: 0px; bottom: 0; left: 0; right: 0; width: 100%; overflow: hidden; background-color: @green-light; padding: 25px; z-index: 10000000; font-size: 32px; line-height: 48px; list-style: none; transition: transform 0.05s ease-in-out, opacity 0.05s ease-in-out, visibility 0.05s ease-in-out; opacity: 0; visibility: hidden; transform: translate(20px, 20px);
-	&_close{ margin-bottom: 25px; border-bottom: 1px solid @green; text-align: right; padding: 12.5px 0px 25px 0px;
-		img{width: 20px;height: 20px;}
-	}
+	position: fixed; top: 0px; bottom: 0; left: 0; right: 0; width: 100%; overflow: hidden; background-color: @black; padding: 25px; z-index: 10000000; font-size: 32px; line-height: 48px; list-style: none; transition: transform 0.05s ease-in-out, opacity 0.05s ease-in-out, visibility 0.05s ease-in-out; opacity: 0; visibility: hidden; transform: translate(50px, 0px); color: @white !important; text-align: center; display: flex; align-items: center; align-content: center; flex-direction: column; justify-content: center;
+	&_close{position: absolute; transform: translate(-50vh, 50vh) rotate(-90deg); left: 0; top: 0; transform-origin: top center; width: 100vh; font-size: 12px; color: @green;}
 	&.is-open{ opacity: 1; visibility: visible; transform: translate(0px, 0px);}
+
+	.qtranxs-lang-menu{margin-top: 50px; color: @green;}
 }
 
 /* ————————————————————————————————————————————————————
@@ -110,7 +114,7 @@ HOME - MAIN ARTICLE
 ———————————————————————————————————————————————————— */
 .main{overflow: hidden; z-index: -10000 !important;
 	a{transition: opacity 0.25s ease-in-out; display: block; overflow: hidden;
-		&:hover{opacity: 0.8;}
+		&:hover{opacity: 0.6;}
 	}
 
   &__meta{width: 400px; float: right; padding: 0px; display: flex; flex-direction: column; min-height: 500px; position: relative; justify-content: space-between; background-color: @white;
@@ -151,7 +155,6 @@ HOME - OTHER PROJECTS
 .projects{padding: 50px 25px; text-align: center; border: 1px solid @black; margin: 100px auto; position: relative; background: @white;
 	@media @mobile{padding: 50px 0;}
 
-
 	&::before{ border: 1px solid @black; content: ' '; top: 10px; left: 10px; right: -10px; bottom: -10px; position: absolute; z-index: -10; background-color: @white;
 	@media @mobile {top: 6px; left: 6px; right: -6px; bottom: -6px;}
 	}
@@ -170,7 +173,7 @@ HOME - OTHER PROJECTS
 		}
 		&:first-child{margin-right: 0%;}
 		a:hover {
-			.projects__article_meta, .projects__article_place{opacity: 0.8;}
+			.projects__article_meta{opacity: 0.6;}
 			.projects__article_thumb_img{transform: translate(-10px, -10px);}
 		}
 
@@ -198,14 +201,14 @@ HOME - OTHER PROJECTS
 HOME - JOURNAL
 ———————————————————————————————————————————————————— */
 
-.journal{ overflow: hidden;
+.journal{ overflow: hidden; position: relative;
 
 	a{transition: opacity 0.25s ease-in-out; display: block;
-		&:hover{opacity: 0.8;}
+		&:hover{opacity: 0.6;}
 	}
 
 	&.container{padding: 0px 15px 50px 15px;
-		@media @mobile{padding: 0px 25px;}
+		@media @mobile{padding: 0px 25px 50px 25px;}
 	}
 	&__title{width: 100%; text-align: center; padding-bottom: 100px;
 		@media @mobile{padding-bottom: 100px;}
@@ -213,10 +216,10 @@ HOME - JOURNAL
 		span{ color: @green; border-bottom: 1px solid @green; padding-bottom: 5px;}
 	}
 
-	&__article{overflow: hidden; width: 33.33333%; float: left; position: relative; padding: 0px 35px;
+	&__article{overflow: hidden; width: 33.33333%; float: left; position: relative; padding: 0px 35px 50px 35px;
 		@media @mobile{width: 100%; padding: 0px 0px 50px 0;}
 		&_meta{padding-top: 10px;
-			h1{text-transform: capitalize; font-size: 14px; line-height: 24px; font-weight: 400; margin: 0;}
+			h1{ font-size: 14px; line-height: 24px; font-weight: 400; margin: 0;}
 			span{color: @green; font-size: 14px; line-height: 24px;}
 		}
 		&_thumb{background-color: @black;
@@ -226,19 +229,19 @@ HOME - JOURNAL
 	}
 }
 
-.newsletter{ padding: 25px; background: @green-light;margin-bottom: 100px; overflow: hidden; width: 100%; position: relative;
+.newsletter{ padding: 25px; background: @green-light;overflow: hidden; width: 100%; position: relative;
 	@media @mobile{width: 100%;}
 	&__icon{ position: absolute; right: 50px; top: 50px;
 		img{width: 50px; height: 50px;}
 	}
-	&__text{font-size: 22px; font-weight: 400; width: 70%; line-height: 30px; margin-bottom: 50px;}
+	&__text{font-size: 14px; line-height: 24px; font-weight: 400; margin-bottom: 50px;}
 	&__status{color: @green; margin-top: 10px; font-size: 12px; line-height: 18px;}
 	&__input{ position: relative; width: 100%;  background-color: transparent;
 		&_name, &_lastname, &_mail, &_send{width: 100%; display: block; border: 0px; outline: none; line-height: 24px; font-size: 16px; border: none; background: transparent; margin-bottom: 10px; border-bottom: 1px  solid @green; font-family: @font; padding: 5px 5px 10px 5px; letter-spacing: 0.05em;
 		}
 
-		&_send{background-color: fade(@green, 20); border: 0; color: @green; padding: 15px; transition: background-color 0.25s ease-in-out;
-			&:hover{background-color: fade(@green, 30);}
+		&_send{background-color: fade(@green, 20); border: 0; color: @green; padding: 15px; transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+			&:hover{background-color: fade(@green, 40); color: @black;}
 		}
 
 		input:-webkit-autofill,
@@ -251,6 +254,351 @@ HOME - JOURNAL
 
 	}
 }
+
+
+/* ————————————————————————————————————————————————————
+ARCHIVE - JOURNAL
+———————————————————————————————————————————————————— */
+
+.archive_journal{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 25px  50px 25px; position: relative; overflow: hidden;
+	@media @mobile{padding: 0px 0px 100px 0px;}
+
+	a{transition: opacity 0.25s ease-in-out; display: block;
+		&:hover{opacity: 0.6;}
+	}
+
+	.container{padding: 0px 15px 50px 15px;
+		@media @mobile{padding: 0px 25px;}
+	}
+
+	&__title{font-size: 72px; font-weight: 400; margin: 0; line-height: 80px; position: relative; padding: 0px 25px 100px 25px; color: @green;
+			@media @mobile{ padding: 0px 25px 50px 25px;}
+	}
+
+	&__article{overflow: hidden; width: 33.33333%; float: left; position: relative; padding: 0px 25px 50px 25px;
+		@media @mobile{width: 100%; padding: 0px 25px 50px 25px;}
+		&:nth-child(3n+2){clear: both;}
+		&_meta{padding-top: 10px;
+			h1{font-size: 14px; line-height: 24px; font-weight: 400; margin: 0;}
+			span{color: @green; font-size: 14px; line-height: 24px;}
+		}
+		&_thumb{background-color: @black;
+			&_img{width: 100%; height: auto; display: block; padding-bottom: 75%; background-size: cover; background-position: center center;}
+		}
+
+	}
+}
+
+/* ————————————————————————————————————————————————————
+ARCHIVE - ARTISTS
+———————————————————————————————————————————————————— */
+
+.archive_artists{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 25px  50px 25px; position: relative; overflow: hidden;
+	@media @mobile{padding: 0px 0px 100px 0px;}
+
+	a{transition: opacity 0.25s ease-in-out; display: block;
+		&:hover{opacity: 0.6;}
+	}
+
+	.container{padding: 0px 15px 50px 15px;
+		@media @mobile{padding: 0px 25px;}
+	}
+
+	&__title{font-size: 72px; font-weight: 400; margin: 0; line-height: 80px; position: relative; padding: 0px 25px 100px 25px; color: @green;
+			@media @mobile{ padding: 0px 25px 50px 25px;}
+	}
+
+	&__list{overflow: hidden; width: 75%; position: relative; padding: 0px 25px 50px 25px; list-style: none; font-size: 36px; line-height: 52px;
+		@media @mobile{width: 100%;}
+	}
+
+	&__profile{background-size: cover; position: absolute; width: 200px; height: 200px; transition: opacity 0.25s ease-in-out; opacity: 0; background-position: center center; 
+		&.is-visible{opacity: 1;}
+	}
+
+	&__letter{width: 100%; position: relative; overflow: hidden; margin-bottom: 25px;
+		&_title{width: 100%; max-width: 75px; float: left;
+			@media @mobile{max-width: 100%;}
+			h1{display: inline-block; font-size: 36px; line-height: 52px; font-weight: normal; margin: 0; color: @green;}
+		}
+		&_list{float: left;}
+	}
+
+}
+
+
+/* ————————————————————————————————————————————————————
+PROJECT CATEGORY PAGE
+———————————————————————————————————————————————————— */
+.archive_projects{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 25px  0px 25px; position: relative; overflow: hidden;
+	@media @mobile{padding: 0px 0px 100px 0px;}
+
+
+	&__title{font-size: 72px; font-weight: 400; margin: 0; line-height: 80px; position: relative; padding: 0px 25px 100px 25px; color: @green;
+			@media @mobile{ padding: 0px 25px 0px 25px;}
+	}
+
+	&__year{width: 100%; position: relative; overflow: hidden; padding-bottom: 50px;
+		&_title{width: 33.333%; float: left; padding-left: 25px;
+			@media @mobile{width: 100%;}
+			h1{font-size: 72px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 80px; position: relative; border-top: 1px solid @black; display: inline-block; padding-top: 10px;
+				@media @mobile{padding-bottom: 50px; border-top: 0;}
+			}
+		}
+		&_list{width: 66.666666%; float: left; position: relative;
+			@media @mobile{width: 100%;}
+		}
+	}
+
+	&__article{width: 50%; float: left; padding: 0px 25px 50px 25px; position: relative;
+		@media @mobile{width: 100%;}
+		a:hover {
+			.archive_projects__article_meta{opacity: 0.6;}
+			.archive_projects__article_thumb_img{transform: translate(-10px, -10px);}
+		}
+
+		&_thumb{margin: 25px 0; background-color: @black;
+			&_img{width: 100%; display: block; height: auto; transition: transform 0.05s ease-in-out; padding-bottom: 75%; background-size: cover; background-position: center center;}
+		}
+		&_place{color: @green; text-transform: uppercase; width: 100%; font-size: 14px; transition: opacity 0.25s ease-in-out;
+			span{ padding-top: 10px; border-top: 1px solid @green; display: inline-block;}
+		}
+		&_meta{ transition: opacity 0.25s ease-in-out;
+			h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; white-space: nowrap; text-overflow: ellipsis;     overflow: hidden;
+
+				span{display: inline-block;}
+					@media @mobile{font-size: 22px; line-height: 32px;}
+				&:after{position: absolute; height: 1px; background-color: @white; bottom: -4px; left: 0px; z-index: 1000; content: ''; width: 50px; left: 0;}
+			}
+			h2{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0px; line-height: 30px; position: relative; color: @green; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
+
+				span{display: inline-block;}
+					@media @mobile{font-size: 22px; line-height: 32px;}
+				&:after{position: absolute; height: 1px; background-color: @white; bottom: -4px; left: 0px; z-index: 1000; content: ''; width: 50px; left: 0;}
+			}
+			p{font-size: 14px; font-weight: 400; margin: 0; line-height: 22px; font-weight: 400; }
+				@media @mobile{padding: 0px 0;}
+		}
+
+	}
+
+
+}
+
+
+/* ————————————————————————————————————————————————————
+SINGLE PROJECT
+———————————————————————————————————————————————————— */
+.single-project{
+	&__container{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 0px 100px 0; position: relative; overflow: hidden;
+	  @media @mobile{padding: 0px 25px 100px 25px;}
+	}
+	&__col1{width: 55%; float: left; padding: 0px 50px; overflow: hidden;
+		@media @mobile{width: 100%; padding: 0px 0px 50px 0;}
+	}
+	&__col2{width: 40%; float: left; padding: 0px 50px; overflow: hidden; position: relative;  margin-left: 5%;
+		@media @mobile{width: 100%; padding: 0px; margin: 0;}
+	}
+
+	&__header{padding-bottom: 50px;}
+	&__thumb{padding-bottom: 65%; width: 100%; background-size: cover; background-position:
+	 center;}
+
+	&__meta{padding: 0 50px 50px 50px;
+		@media @mobile{padding: 0px 0px 50px 0px}
+		h1{font-size: 72px; font-weight: 400; margin: 0; line-height: 80px; position: relative;
+				@media @mobile{font-size: 22px; line-height: 32px;}
+			// &:after{position: absolute; height: 1px; background-color: @white; bottom: -4px; left: 0px; z-index: 1000; content: ''; width: 50px; left: 0;}
+		}
+		h2{font-size: 72px; font-weight: 400; margin: 0; line-height: 80px; font-weight: 400; color: @green;
+				@media @mobile{font-size: 22px; line-height: 32px;}
+			}
+		span{color: @green; font-size: 14px; border-top: 1px solid @green; padding-top: 10px; display: inline-block; margin-bottom: 50px; @media @mobile{margin-bottom: 25px}}
+	}
+
+	&__content{
+		p{font-size: 14px; line-height: 24px;
+			&:first-child{margin-top: 0;}
+		}
+		a{color: @black; border-bottom: 1px solid @black;}
+	}
+
+	&__other{
+		h3{margin: 0 0 10px 0 ; font-size: 12px; text-transform: uppercase; line-height: 22px; font-weight: 400;}
+
+		&_date{padding-bottom: 25px; font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; padding-top: 11px;
+			&::after{position: absolute; top: 0px; left: 0; width: 55%; height: 1px; background-color: @black; content: ' '}
+				@media @mobile{font-size: 22px; line-height: 32px;}
+			span{display: block;}
+		}
+
+		&_link{background-color: @green-light; display: inline-block;  padding: 25px;  width: 100%; position: relative; color: @green; transition: opacity 0.25s ease-in-out;
+			&:hover{opacity: 0.6;}
+			&_inner{width: 100%; overflow: hidden; white-space: nowrap;}
+
+			&::after{    position: absolute; top: 0px; right: 0px; bottom: 0px; background-color: transparent;
+    background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), @green-light 75%);
+    background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), @green-light 75%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), @green-light 75%); content: "";
+    pointer-events: none; width: 30%;}
+		}
+
+		&_artist{line-height: 24px; font-size: 14px;
+			padding: 50px 0 25px 0;
+			&_list{overflow: hidden; padding-bottom: 10px;}
+			a{display: inline-block; position: relative; border-bottom: 1px solid @green; margin-right: 10px; color: @green; transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out; margin-bottom: 10px;
+				&:hover{color: @black; border-color: @black;}
+				&.hide{display: none;}
+			}
+
+			.show_all{display: inline-block;; background: @green-light; padding: 10px; color: @green;}
+
+		}
+
+	}
+}
+
+
+
+/* ————————————————————————————————————————————————————
+ABOUT
+———————————————————————————————————————————————————— */
+.page-template-page-about{background: @black;
+	.header{color: @white;
+		&__logo{color: @white;}
+		&__menu_desktop a{color: @white; border-bottom: 1px solid @black;}
+	}
+
+	.menu-box-1{
+		&:hover{*{fill: @white;}}
+	}
+
+	.footer{background: @black; color: @white;
+		a:hover{color: @white;}
+	}
+
+	.about{width: 100%; background-color: @black; overflow: hidden; position: relative; color: @white;
+
+		&__text{width: calc(~"100% - 500px"); float: left; border-bottom: 1px solid @white; padding-bottom: 75px;
+			@media @tablet{width: 100%;}
+			@media @mobile{width: 100%;}
+			h2{font-size: 22px; line-height: 34px; font-weight: normal; margin-top: 0;}
+			p{font-size: 14px; line-height: 24px;
+				&:first-child{margin-top: 0;}
+				&:last-child{margin-bottom: 0;}
+			}
+		}
+
+		&__image{width: 100%; max-width: 550px; position: absolute; top: 0px; right: 0; bottom: 0; height: auto; background-size: contain; background-position: top right; background-color: @black; background-repeat: no-repeat;
+			@media @tablet{width: 100%; position: relative; padding-bottom: 95%; margin-bottom: 50px; top: 0; background-size: cover; max-width: 100%;}
+		}
+
+	}
+}
+
+
+/* ————————————————————————————————————————————————————
+ARCHIVE PUBLICATIONS
+———————————————————————————————————————————————————— */
+
+.archive_publications{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 25px  0px 25px; position: relative; overflow: hidden;
+	@media @mobile{padding: 0px 0px 100px 0px;}
+
+	a{transition: opacity 0.25s ease-in-out; display: block;
+		&:hover{opacity: 0.6;}
+	}
+
+	&__title{font-size: 72px; font-weight: 400; margin: 0; line-height: 80px; position: relative; padding: 0px 25px 100px 25px; color: @green; text-overflow: ellipsis; overflow: hidden;
+			@media @mobile{ padding: 0px 25px 50px 25px;}
+	}
+
+	&__list{width: 100%; position: relative; overflow: hidden; padding-bottom: 50px; display: flex;
+		justify-content: flex-start; flex-wrap: wrap; align-items: baseline;
+
+			&_item{width: 33.3333%; overflow: hidden; position: relative; display: inline-block; vertical-align: baseline; line-height: 24px; float: left; padding: 0px 25px 50px 25px; position: relative;
+				@media @mobile{width: 100%;}
+				&_thumb{width: 100%; overflow: hidden; margin-bottom: 25px;
+					img{max-width: 200px; width: 100%; display: block; border: 1px solid @green-light;}
+				}
+
+				&_meta{
+					h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+					h2{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color: @green;}
+				}
+
+			}
+
+	}
+
+}
+
+
+/* ————————————————————————————————————————————————————
+SINGLE PUBLICATIONS
+———————————————————————————————————————————————————— */
+.single-publication{
+	&__container{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 0px 100px 0; position: relative; overflow: hidden;
+	  @media @mobile{padding: 0px 25px 100px 25px;}
+	}
+	&__col1{width: 55%; float: left; padding: 0px 50px; overflow: hidden;
+		@media @mobile{width: 100%; padding: 0px 0px 0px 0;}
+	}
+	&__col2{width: 40%; float: left; padding: 0px 50px; overflow: hidden; position: relative;  margin-right: 5%;
+		@media @mobile{width: 100%; padding: 0px; margin: 0;}
+	}
+
+	&__header{padding-bottom: 50px;}
+	&__thumb{width: 100%; padding-bottom: 50px;
+		img{width: 100%; display: block; border: 1px solid @green-light;
+			@media @mobile{max-width: 200px;}
+		}
+	}
+
+	&__meta{padding: 0; overflow: hidden;
+		@media @mobile{padding: 0px 0px 0px 0px}
+		h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; width: 100%;}
+		h2{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; color: @green; width: 100%;}
+	}
+
+	&__info{padding-bottom: 25px; font-size: 14px; line-height: 24px; width: auto; overflow: hidden;
+		&_serie{color: @green; display: block; width: auto;}
+		&_isbn{color: @green; display: block; width: auto; margin-top: 10px; border-top: 1px solid @green; padding-top: 10px; float: left; margin-bottom: 0px;}
+	}
+
+
+	&__content{
+		p{font-size: 14px; line-height: 24px;
+			&:first-child{margin-top: 0;}
+			&:last-child{margin-bottom: 0;}
+		}
+		a{color: @black; border-bottom: 1px solid @black;}
+	}
+
+	&__other{
+		h3{margin: 0 0 10px 0 ; font-size: 12px; text-transform: uppercase; line-height: 22px; font-weight: 400;}
+
+		&_link{background-color: @green-light; display: inline-block;  padding: 25px;  max-width: 400px; width: 100%; position: relative; color: @green; transition: opacity 0.25s ease-in-out; margin-bottom: 50px;
+			@media @mobile{max-width: 75%;}
+			&:hover{opacity: 0.6;}
+			&_inner{width: 100%; overflow: hidden; white-space: nowrap;}
+
+			&::after{    position: absolute; top: 0px; right: 0px; bottom: 0px; background-color: transparent;
+    background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), @green-light 75%);
+    background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), @green-light 75%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), @green-light 75%); content: "";
+    pointer-events: none; width: 30%;}
+		}
+
+
+	}
+}
+
+
+
+
+/* ————————————————————————————————————————————————————
+FOOTER
+———————————————————————————————————————————————————— */
 
 .footer{padding: 100px 0px 50px 0; clear: both; background-color: @green-light; font-size: 14px; line-height: 24px;
 
@@ -268,4 +616,67 @@ HOME - JOURNAL
 
 	&__bottom{text-transform: uppercase; font-size: 12px; letter-spacing: 0.1em; padding-top: 0px; color: @green;}
 
+}
+
+.standard_page{
+	&__container{border: 1px solid @black; padding: 50px; margin-bottom: 100px; background-color: @white; position: relative;
+		@media @tablet{padding: 25px;}
+		&::before{ border: 1px solid @black; content: ' '; top: 10px; left: 10px; right: -10px; bottom: -10px; position: absolute; z-index: -10; background-color: @white;
+		@media @mobile {top: 6px; left: 6px; right: -6px; bottom: -6px;}
+		}
+		&::after{ border: 1px solid @black; content: ' '; top: 20px; left: 20px; right: -20px; bottom: -20px; position: absolute; z-index: -20;
+			@media @mobile {top: 11px; left: 11px; right: -11px; bottom: -11px;}
+		}
+	}
+	&__title{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; display: inline-block; border-bottom: 1px solid @black; padding-bottom: 10px;}
+	&__text{padding: 50px 0 0px 0;  overflow: hidden;
+		p{font-size: 14px; line-height: 24px;
+			&:first-child{margin-top: 0;}
+			&:last-child{margin-bottom: 0;}
+		}
+
+		ul{
+			li{font-size: 14px; line-height: 24px;}
+		}
+
+		a{color: @black; border-bottom: 1px solid @black; transition: opacity 0.25s ease-in-out;
+			&:hover{opacity: 0.6; }
+		}
+	}
+}
+
+/* ————————————————————————————————————————————————————
+TRANSITION
+———————————————————————————————————————————————————— */
+#page-transition {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    position: fixed;
+    z-index: 2006;
+		visibility: hidden;
+		transition: visibility 0.25s ease-in-out;
+		display: flex; align-items: center; align-content: center; top: 0; right: 0; bottom: 0; left: 0;
+		.dot{width: 20px; height: 20px; background-color: @black; border-radius: 10px; margin: auto; opacity: 0;}
+}
+
+#page-transition.is-loading{width: 100%; visibility: visible;
+	.dot{animation: fadeloop infinite alternate 0.5s;}
+}
+
+@keyframes fadeloop {
+  0% {
+    opacity: 0;
+  }
+
+  75% {
+
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }

@@ -14,7 +14,7 @@
 function interferenze_enqueue_styles() {
 
 	# Main stylesheet
-  	wp_register_style( 'interferenze-main-styles' , get_template_directory_uri(). "/style.css" , array(), una_theme_version, 'screen' );
+  	wp_register_style( 'interferenze-main-styles' , get_template_directory_uri(). "/style.css" , array(), interferenze_theme_version, 'screen' );
   	wp_enqueue_style( 'interferenze-main-styles' );
 
 }
@@ -34,13 +34,25 @@ function interferenze_enqueue_scripts() {
   wp_register_script  ( 'jquery-2.2.4.min' , get_template_directory_uri().'/frontend/js/jquery-2.2.4.min.js' , array(), interferenze_theme_version, false );
   wp_enqueue_script ( 'jquery-2.2.4.min' );
 
+  # Smoothstate
+  wp_register_script  ( 'smoothstate.min' , get_template_directory_uri().'/frontend/js/jquery.smoothState.min.js' , array(), interferenze_theme_version, false );
+  wp_enqueue_script ( 'smoothstate.min' );
+
   # Jquery Lazy
   wp_register_script  ( 'jquery.lazy.min' , get_template_directory_uri().'/frontend/js/jquery.lazy.min.js' , array(), interferenze_theme_version, false );
   wp_enqueue_script ( 'jquery.lazy.min' );
 
-  # Jquery Validate
-  wp_register_script  ( 'jquery.validate.min' , get_template_directory_uri().'/frontend/js/jquery.validate.min.js' , array(), interferenze_theme_version, false );
-  wp_enqueue_script ( 'jquery.validate.min' );
+  # Hammer.min
+  wp_register_script  ( 'hammer.min' , get_template_directory_uri().'/frontend/js/hammer.min.js' , array(), interferenze_theme_version, false );
+  wp_enqueue_script ( 'hammer.min' );
+
+  # Jquery Hammer
+  wp_register_script  ( 'jquery.hammer' , get_template_directory_uri().'/frontend/js/jquery.hammer.js' , array(), interferenze_theme_version, false );
+  wp_enqueue_script ( 'jquery.hammer' );
+
+  # Jquery HoverIntent
+  wp_register_script  ( 'hover.intent' , get_template_directory_uri().'/frontend/js/hover.intent.js' , array(), interferenze_theme_version, false );
+  wp_enqueue_script ( 'hover.intent' );
 
 	# Custom Scripts
 	wp_register_script  ( 'interferenze-custom-code' , get_template_directory_uri().'/frontend/js/custom-code.js' , array(), interferenze_theme_version, false );

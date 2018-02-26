@@ -16,11 +16,11 @@ get_header(); ?>
 
 <!-- HOME PAGE — LATEST PROJECT -->
 <?php
-	$args = array( 'post_type' => 'projects', 'posts_per_page' => 1, 'order' => DESC);
+	$args = array( 'post_type' => 'project', 'posts_per_page' => 1, 'order' => 'DESC');
 	$loop = new WP_Query( $args );
 	while ( $loop->have_posts() ) : $loop->the_post();
 	$thumb_id = get_post_thumbnail_id();
-      $url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-project');
+      $url_array = wp_get_attachment_image_src($thumb_id, 'large');
       $url = $url_array[0];
 ?>
 
@@ -47,7 +47,12 @@ get_header(); ?>
 					</div>
 
 					<div class="main__meta_view">
-						<span>View &rarr;</span>
+						<span>
+							<?php if(qtrans_getLanguage() == "it") : ?> Vai al progetto &rarr;
+							<?php endif ?>
+							<?php if(qtrans_getLanguage() == "en") : ?> View &rarr;
+							<?php endif ?>
+						</span>
 					</div>
 
 				</div>
@@ -62,17 +67,28 @@ get_header(); ?>
 	<section class="projects">
 
 		<div class="projects__title">
-			<h1>Latest Projects</h1>
-			<span>See all &rarr;</span>
+			<h1>
+				<?php if(qtrans_getLanguage() == "it") : ?> Ultimi Progetti
+				<?php endif ?>
+				<?php if(qtrans_getLanguage() == "en") : ?> Latest Projects
+				<?php endif ?>
+			</h1>
+			<a href="<?php echo get_post_type_archive_link( 'project' ); ?>">
+				<span>
+				<?php if(qtrans_getLanguage() == "it") : ?> Vedi tutti &rarr;
+										<?php endif ?>
+										<?php if(qtrans_getLanguage() == "en") : ?> See all &rarr;
+				<?php endif ?>
+			</span></a>
 		</div>
 
 		<div>
 			<?php
-				$args = array( 'post_type' => 'projects', 'posts_per_page' => 2, 'offset' => 1,'order' => DESC);
+				$args = array( 'post_type' => 'project', 'posts_per_page' => 2, 'offset' => 1,'order' => 'DESC');
 				$loop = new WP_Query( $args );
 				while ( $loop->have_posts() ) : $loop->the_post();
 				$thumb_id = get_post_thumbnail_id();
-			      $url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-project');
+			      $url_array = wp_get_attachment_image_src($thumb_id, 'large');
 			      $url = $url_array[0];
 			?>
 
@@ -108,15 +124,19 @@ get_header(); ?>
 <section class="journal container">
   <div class="journal__title">
     <h1>Journal</h1>
-    <span>See all &rarr;</span>
+     <a href="<?php $url = site_url( '/', 'http' ); echo esc_url( $url );?>/journal"><span>
+			 <?php if(qtrans_getLanguage() == "it") : ?> Vedi tutti &rarr;
+		 										<?php endif ?>
+		 										<?php if(qtrans_getLanguage() == "en") : ?> See all &rarr;
+		 				<?php endif ?></span></a>
   </div>
 
 	<?php
-	$args = array( 'post_type' => 'post', 'posts_per_page' => 2, 'order' => DESC);
+	$args = array( 'post_type' => 'post', 'posts_per_page' => 2, 'order' => 'DESC');
 	$loop = new WP_Query( $args );
 	while ( $loop->have_posts() ) : $loop->the_post();
 	$thumb_id = get_post_thumbnail_id();
-	$url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-project');
+	$url_array = wp_get_attachment_image_src($thumb_id, 'large');
 	$url = $url_array[0];
 	?>
 
@@ -136,28 +156,33 @@ get_header(); ?>
   <article class="journal__article">
     <div class="newsletter">
       <div class="newsletter__text">
-        Subscribe now<br /> the Interferenze newsletter
+				<?php if(qtrans_getLanguage() == "it") : ?>Sottoscrivi ora<br /> la newsletter di Interferenze
+				<?php endif ?>
+				<?php if(qtrans_getLanguage() == "en") : ?>Subscribe now<br /> the Interferenze newsletter
+				<?php endif ?>
+
       </div>
       <div class="newsletter__input">
 
 				<form action="<?php echo site_url() ?>/wp-admin/admin-ajax.php" id="mailchimp">
 					<!-- for my website the site_url() function returns https://rudrastyh.com -->
-					<input type="text" name="fname" placeholder="First name"  class="newsletter__input_name"/>
-					<input type="text" name="lname" placeholder="Last name" class="newsletter__input_lastname"/>
+					<input type="text" name="fname" placeholder="Nome / First Name"  class="newsletter__input_name"/>
+					<input type="text" name="lname" placeholder="Cognome / Last Name" class="newsletter__input_lastname"/>
 					<input type="email" name="email" placeholder="Email *" class="newsletter__input_mail" required />
 
 					<input type="hidden" name="action" value="mailchimpsubscribe" />
 					<!-- we need action parameter to receive ajax request in WordPress -->
 
-					<button class="newsletter__input_send">Subscribe</button>
+					<button class="newsletter__input_send"><?php if(qtrans_getLanguage() == "it") : ?> Invia
+					<?php endif ?>
+					<?php if(qtrans_getLanguage() == "en") : ?> Subscribe
+					<?php endif ?></button>
 				</form>
 
 			 <div class="newsletter__status"></div>
 
       </div>
     </div>
-</form>
-
 </article>
 
 </section>

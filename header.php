@@ -23,20 +23,25 @@
 
 </head>
 
-<body <?php body_class(); ?> >
+<body>
+<div id="page-transition">
+	<div class="dot"></div>
+</div>
+<div id="page" class="is-exiting">
+	<div <?php body_class(); ?>>
     <header class="header">
       <div class="container">
         <div class="header__logo">
-					<a href="<?php bloginfo('home')?>">
+					<a href="<?php $url = site_url( '/', 'http' ); echo esc_url( $url );?>">
           	Interferenze <span>new arts festival</span>
 					</a>
         </div>
         <div class="header__menu_desktop">
 					<?php wp_nav_menu( array( 'container'=> false, 'items_wrap' => '%3$s', 'menu_class'=> false, 'theme_location' => 'header-menu', 'container_class' => '' ) );?>
         </div>
-        <div class="header__search">
+        <!-- <div class="header__search">
           <li>Search</li>
-        </div>
+        </div> -->
         <div class="header__menu_mobile">
           <svg viewBox="0 0 38 38" class="menu-box-1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" data-svg-origin="0 0" transform="matrix(1,0,0,1,0,0)">
@@ -56,8 +61,23 @@
 
 			<div class="menu__mobile">
 				<div class="menu__mobile_close">
-					<img src="<?php bloginfo('stylesheet_directory')?>/frontend/img/close.svg" />
+					CLOSE
 				</div>
 				<?php wp_nav_menu( array( 'container'=> false, 'items_wrap' => '%3$s', 'menu_class'=> false, 'theme_location' => 'header-menu', 'container_class' => '' ) );?>
 			</div>
     </header>
+
+		<div class="search">
+			<div class="search__overlay">
+
+			</div>
+			<div class="container">
+				<form id="search">
+					<label>Search for Media, Artist, Project...</label>
+					<input name="s"/>
+				</form>
+				<div id="content">
+
+				</div>
+			</div>
+		</div>
