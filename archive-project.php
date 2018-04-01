@@ -2,9 +2,9 @@
 
 <div class="archive_projects">
     <div class="archive_projects__title">
-      <?php if(qtrans_getLanguage() == "it") : ?> Ultimi Progetti
+      <?php if(qtrans_getLanguage() == "it") : ?>Progetti
       <?php endif ?>
-      <?php if(qtrans_getLanguage() == "en") : ?> Latest Projects
+      <?php if(qtrans_getLanguage() == "en") : ?>Projects
       <?php endif ?>
     </div>
     <?php

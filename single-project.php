@@ -30,6 +30,12 @@ get_header(); ?>
 			</div>
 
 			<div class="single-project__thumb lazy" data-src="<?php echo $url;?>"></div>
+			<div class="single-project__credit container">
+				<?php if(get_field('credit', $thumb_id))
+				{
+						echo 'Credit &rarr; ' . get_field('credit', $thumb_id);
+				}?>
+			</div>
 
 		</div>
 

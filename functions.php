@@ -11,7 +11,7 @@
 # Theme definitions
 # ------------------------------------------------------------------------
 
-define( 'interferenze_theme_version' , '1.0.5' );  				# Theme version
+define( 'interferenze_theme_version' , '1.0.6' );  				# Theme version
 if ( ! isset( $content_width ) ) $content_width = 640;  # Content Width
 
 # ------------------------------------------------------------------------

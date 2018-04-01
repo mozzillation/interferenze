@@ -16,23 +16,42 @@ get_header(); ?>
   <article class="archive_journal__article">
     <div class="newsletter">
       <div class="newsletter__text">
-        Subscribe now<br /> the Interferenze newsletter
+				<?php if(qtrans_getLanguage() == "it") : ?>Sottoscrivi ora<br /> la newsletter di Interferenze
+				<?php endif ?>
+				<?php if(qtrans_getLanguage() == "en") : ?>Subscribe now<br /> the Interferenze newsletter
+				<?php endif ?>
+
       </div>
       <div class="newsletter__input">
 
-        <form action="<?php echo site_url() ?>/wp-admin/admin-ajax.php" id="mailchimp">
-          <!-- for my website the site_url() function returns https://rudrastyh.com -->
-          <input type="text" name="fname" placeholder="First name"  class="newsletter__input_name"/>
-          <input type="text" name="lname" placeholder="Last name" class="newsletter__input_lastname"/>
-          <input type="email" name="email" placeholder="Email *" class="newsletter__input_mail" required />
+				<form action="<?php echo site_url() ?>/wp-admin/admin-ajax.php" id="mailchimp">
 
-          <input type="hidden" name="action" value="mailchimpsubscribe" />
-          <!-- we need action parameter to receive ajax request in WordPress -->
+					<?php if(qtrans_getLanguage() == "it") : ?>
+						<input type="text" name="fname" placeholder="Nome"  class="newsletter__input_name"/>
+					<?php endif ?>
+					<?php if(qtrans_getLanguage() == "en") : ?>
+						<input type="text" name="fname" placeholder="First Name"  class="newsletter__input_name"/>
+					<?php endif ?>
 
-          <button class="newsletter__input_send">Subscribe</button>
-        </form>
+					<?php if(qtrans_getLanguage() == "it") : ?>
+						<input type="text" name="lname" placeholder="Cognome" class="newsletter__input_lastname"/>
+					<?php endif ?>
+					<?php if(qtrans_getLanguage() == "en") : ?>
+						<input type="text" name="lname" placeholder="Last Name" class="newsletter__input_lastname"/>
+					<?php endif ?>
 
-       <div class="newsletter__status"></div>
+					<input type="email" name="email" placeholder="Email *" class="newsletter__input_mail" required />
+
+					<input type="hidden" name="action" value="mailchimpsubscribe" />
+					<!-- we need action parameter to receive ajax request in WordPress -->
+
+					<button class="newsletter__input_send"><?php if(qtrans_getLanguage() == "it") : ?> Invia
+					<?php endif ?>
+					<?php if(qtrans_getLanguage() == "en") : ?> Subscribe
+					<?php endif ?></button>
+				</form>
+
+			 <div class="newsletter__status"></div>
 
       </div>
     </div>

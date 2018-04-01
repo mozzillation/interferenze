@@ -165,9 +165,21 @@ get_header(); ?>
       <div class="newsletter__input">
 
 				<form action="<?php echo site_url() ?>/wp-admin/admin-ajax.php" id="mailchimp">
-					<!-- for my website the site_url() function returns https://rudrastyh.com -->
-					<input type="text" name="fname" placeholder="Nome / First Name"  class="newsletter__input_name"/>
-					<input type="text" name="lname" placeholder="Cognome / Last Name" class="newsletter__input_lastname"/>
+
+					<?php if(qtrans_getLanguage() == "it") : ?>
+						<input type="text" name="fname" placeholder="Nome"  class="newsletter__input_name"/>
+					<?php endif ?>
+					<?php if(qtrans_getLanguage() == "en") : ?>
+						<input type="text" name="fname" placeholder="First Name"  class="newsletter__input_name"/>
+					<?php endif ?>
+
+					<?php if(qtrans_getLanguage() == "it") : ?>
+						<input type="text" name="lname" placeholder="Cognome" class="newsletter__input_lastname"/>
+					<?php endif ?>
+					<?php if(qtrans_getLanguage() == "en") : ?>
+						<input type="text" name="lname" placeholder="Last Name" class="newsletter__input_lastname"/>
+					<?php endif ?>
+
 					<input type="email" name="email" placeholder="Email *" class="newsletter__input_mail" required />
 
 					<input type="hidden" name="action" value="mailchimpsubscribe" />

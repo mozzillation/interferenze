@@ -2,14 +2,14 @@
 
 <div class="archive_artists">
     <div class="archive_artists__title">
-      Artists Database
+      People Database
     </div>
 
     <div class="archive_artists__list">
 
     <?php
     $prev_letter = null;
-    $args = array( 'post_type' => 'artist', 'posts_per_page' => -1, 'orderby'=> 'title',
+    $args = array( 'post_type' => 'people', 'posts_per_page' => -1, 'orderby'=> 'title',
     								'order' => 'ASC',);
   	$loop = new WP_Query( $args );
     if( $loop->have_posts() ):

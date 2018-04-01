@@ -28,34 +28,49 @@ add_action( 'wp_enqueue_scripts' , 'interferenze_enqueue_styles' );
 # False = Header
 # True = Footer
 
+
+// Async load
+function async_scripts($url)
+{
+    if ( strpos( $url, '#asyncload') === false )
+        return $url;
+    else if ( is_admin() )
+        return str_replace( '#asyncload', '', $url );
+    else
+	return str_replace( '#asyncload', '', $url )."' async='async";
+    }
+add_filter( 'clean_url', 'async_scripts', 11, 1 );
+
+
+
 function interferenze_enqueue_scripts() {
 
   # Jquery
-  wp_register_script  ( 'jquery-2.2.4.min' , get_template_directory_uri().'/frontend/js/jquery-2.2.4.min.js' , array(), interferenze_theme_version, false );
+  wp_register_script  ( 'jquery-2.2.4.min' , get_template_directory_uri().'/frontend/js/jquery-2.2.4.min.js' , array(), interferenze_theme_version, true );
   wp_enqueue_script ( 'jquery-2.2.4.min' );
 
   # Smoothstate
-  wp_register_script  ( 'smoothstate.min' , get_template_directory_uri().'/frontend/js/jquery.smoothState.min.js' , array(), interferenze_theme_version, false );
+  wp_register_script  ( 'smoothstate.min' , get_template_directory_uri().'/frontend/js/jquery.smoothState.min.js' , array(), interferenze_theme_version, true );
   wp_enqueue_script ( 'smoothstate.min' );
 
   # Jquery Lazy
-  wp_register_script  ( 'jquery.lazy.min' , get_template_directory_uri().'/frontend/js/jquery.lazy.min.js' , array(), interferenze_theme_version, false );
+  wp_register_script  ( 'jquery.lazy.min' , get_template_directory_uri().'/frontend/js/jquery.lazy.min.js' , array(), interferenze_theme_version, true );
   wp_enqueue_script ( 'jquery.lazy.min' );
 
   # Hammer.min
-  wp_register_script  ( 'hammer.min' , get_template_directory_uri().'/frontend/js/hammer.min.js' , array(), interferenze_theme_version, false );
-  wp_enqueue_script ( 'hammer.min' );
+  // wp_register_script  ( 'hammer.min' , get_template_directory_uri().'/frontend/js/hammer.min.js' , array(), interferenze_theme_version, true );
+  // wp_enqueue_script ( 'hammer.min' );
 
-  # Jquery Hammer
-  wp_register_script  ( 'jquery.hammer' , get_template_directory_uri().'/frontend/js/jquery.hammer.js' , array(), interferenze_theme_version, false );
-  wp_enqueue_script ( 'jquery.hammer' );
+  // # Jquery Hammer
+  // wp_register_script  ( 'jquery.hammer' , get_template_directory_uri().'/frontend/js/jquery.hammer.js' , array(), interferenze_theme_version, true );
+  // wp_enqueue_script ( 'jquery.hammer' );
 
   # Jquery HoverIntent
-  wp_register_script  ( 'hover.intent' , get_template_directory_uri().'/frontend/js/hover.intent.js' , array(), interferenze_theme_version, false );
+  wp_register_script  ( 'hover.intent' , get_template_directory_uri().'/frontend/js/hover.intent.min.js' , array(), interferenze_theme_version, true );
   wp_enqueue_script ( 'hover.intent' );
 
 	# Custom Scripts
-	wp_register_script  ( 'interferenze-custom-code' , get_template_directory_uri().'/frontend/js/custom-code.js' , array(), interferenze_theme_version, false );
+	wp_register_script  ( 'interferenze-custom-code' , get_template_directory_uri().'/frontend/js/custom-code.js' , array(), interferenze_theme_version, true );
 	wp_enqueue_script ( 'interferenze-custom-code' );
 
 }

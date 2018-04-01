@@ -24,7 +24,7 @@ body{width: 100%; height: auto; margin: 0; padding: 0; border: 0; font-size: 100
 	color: @black; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; font-weight: 400; letter-spacing: 0.05em; word-spacing: 0.001em;}
 
 .container{width: 100%; max-width: @max-w; height: auto; clear: both; margin: auto; padding: 0px 50px; position: relative; overflow: hidden;
-  @media @mobile{padding: 0px 20px;}
+  @media @tablet{padding: 0px 20px;}
 }
 .divider{width: 100%; height: 1px; background-color: @green-light; margin: 50px auto; clear: both;}
 .clear{clear: left;}
@@ -312,7 +312,7 @@ ARCHIVE - ARTISTS
 		@media @mobile{width: 100%;}
 	}
 
-	&__profile{background-size: cover; position: absolute; width: 200px; height: 200px; transition: opacity 0.25s ease-in-out; opacity: 0; background-position: center center; 
+	&__profile{background-size: cover; position: absolute; width: 200px; height: 200px; transition: opacity 0.25s ease-in-out; opacity: 0; background-position: center center;
 		&.is-visible{opacity: 1;}
 	}
 
@@ -403,6 +403,9 @@ SINGLE PROJECT
 	&__header{padding-bottom: 50px;}
 	&__thumb{padding-bottom: 65%; width: 100%; background-size: cover; background-position:
 	 center;}
+	&__credit{font-size: 12px; line-height: 18px; color: @green; padding-top: 10px;
+		@media @mobile{padding: 10px 0 0 0;}
+	}
 
 	&__meta{padding: 0 50px 50px 50px;
 		@media @mobile{padding: 0px 0px 50px 0px}
@@ -474,7 +477,9 @@ ABOUT
 	}
 
 	.footer{background: @black; color: @white;
+		.no-about{display: none;}
 		a:hover{color: @white;}
+		&__bottom{a:hover{border-color: @white;}}
 	}
 
 	.about{width: 100%; background-color: @black; overflow: hidden; position: relative; color: @white;
@@ -522,8 +527,14 @@ ARCHIVE PUBLICATIONS
 				}
 
 				&_meta{
-					h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
-					h2{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color: @green;}
+					h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative;
+						@media @mobile{white-space: nowrap; text-overflow: ellipsis; overflow:hidden;}
+				}
+					h2{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; color: @green;
+						a{display: inline-block; width: auto; border-bottom: 1px solid @green; margin-right: 5px;
+							@media @mobile{}
+						}
+					}
 				}
 
 			}
@@ -532,6 +543,56 @@ ARCHIVE PUBLICATIONS
 
 }
 
+/* ————————————————————————————————————————————————————
+SINGLE POST
+———————————————————————————————————————————————————— */
+.single_post{position: relative; overflow: hidden;
+	&__container{width: 65%; float: left;
+		@media @tablet {width: 100%;}
+	}
+
+	&__sidebar{
+		float: left; width: calc(~"35% - 25px"); padding: 50px 25px 50px 50px;
+
+		@media @tablet{width: 100%; padding: 50px 0px 50px 0; border-top: 1px solid @black;}
+
+		&_title{font-size: 18px; line-height: 36px; font-weight: 400; margin: 0; margin-bottom: 10px;}
+		&_item{overflow: hidden; width: 100%; position: relative; padding: 0px 0px 50px 0px;
+			@media @mobile{width: 100%; padding: 0px 0px 50px 0;}
+			&_meta{padding-top: 10px;
+				h1{ font-size: 14px; line-height: 24px; font-weight: 400; margin: 0;}
+				span{color: @green; font-size: 14px; line-height: 24px;}
+			}
+			&_thumb{background-color: @black;
+				&_img{width: 100%; height: auto; display: block; padding-bottom: 75%; background-size: cover; background-position: center center;}
+			}
+
+		}
+	}
+	.container{padding-left: 25px; padding-right: 25px;}
+	&__meta{padding: 0; overflow: hidden; padding: 0px 25px 50px 25px;
+		@media @tablet{padding: 0px 0px 50px 0px}
+		h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; width: 100%; max-width: calc(~"65% - 50px"); overflow: hidden;
+			@media @tablet {max-width: 100%;}
+		}
+		h2{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; color: @green; width: 100%;}
+	}
+
+	&__thumb{ width: 100%; padding: 0px 0 50px 0;
+	 img{width: 100%; height: auto; display: block;}
+ }
+
+	&__content{padding: 0px 25px 100px 25px;
+		@media @tablet{padding: 0px 0px 100px 0px;}
+		p{font-size: 14px; line-height: 24px;
+			&:first-child{margin-top: 0;}
+			&:last-child{margin-bottom: 0;}
+		}
+		a{color: @black; border-bottom: 1px solid @black;transition: opacity 0.25s ease-in-out;
+			&:hover{opacity: 0.6;}
+		}
+	}
+}
 
 /* ————————————————————————————————————————————————————
 SINGLE PUBLICATIONS
@@ -614,7 +675,13 @@ FOOTER
 		}
 	}
 
-	&__bottom{text-transform: uppercase; font-size: 12px; letter-spacing: 0.1em; padding-top: 0px; color: @green;}
+	&__bottom{ font-size: 10px; letter-spacing: 0.1em; padding-top: 0px; color: @green;
+		max-width: 50%; width: 100%; line-height: 16px;
+		@media @mobile{max-width: 100%;}
+		a{border-bottom: 1px solid @green; transition: border-bottom 0.25s ease-in-out, color 0.25s ease-in-out;
+			&:hover{border-bottom: 1px solid @black;}
+		}
+	}
 
 }
 
@@ -642,6 +709,24 @@ FOOTER
 		a{color: @black; border-bottom: 1px solid @black; transition: opacity 0.25s ease-in-out;
 			&:hover{opacity: 0.6; }
 		}
+	}
+}
+
+
+.error{
+	&__text{padding-bottom: 50px;
+		h1{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; width: 100%;}
+		p{font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 0; line-height: 30px; position: relative; color: @green; width: 100%;
+			&:last-child{margin-top: 25px;
+				a{ border-bottom: 1px solid @green; transition: opacity 0.25s ease-in-out;
+					&:hover{opacity: 0.6;}
+				}
+			}
+		}
+	}
+	&__thumb{
+		width: 100%; padding-bottom: 22%; overflow: hidden; background-size: 100%;
+		@media @mobile{background-size:100%;}
 	}
 }
 

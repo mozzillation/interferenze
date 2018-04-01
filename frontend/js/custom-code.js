@@ -1,13 +1,6 @@
-// ------------------------------------------------------------------------
+//
 // CUSTOM CODE
-// ------------------------------------------------------------------------
-
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-16867745-1', 'auto');
+//
 
 $(window).load(function(){
   $('#page').removeClass('is-exiting');
@@ -17,31 +10,33 @@ $(window).load(function(){
 
 
 function allScript(){
-    // ————————————————————————————————————————
+
+    $('html, body').scrollTop(0);
+    //
     // SEARCH
-    // ————————————————————————————————————————
+    //
     $('.header__search, .search__overlay').on('click', function(){
       $('.search').toggleClass('is-open');
     })
 
-    // ————————————————————————————————————————
+    //
     // MOBILE MENU
-    // ————————————————————————————————————————
+    //
     $('.header__menu_mobile').on('click', function(){
       $('.menu__mobile').toggleClass('is-open');
     })
 
-    // ————————————————————————————————————————
+    //
     // SHOW ALL ARTISTS
-    // ————————————————————————————————————————
+    //
     $('.show_all').on('click', function(){
       $(this).hide();
       $('.single-project__other_artist_list a').removeClass('hide');
     })
 
-    // ————————————————————————————————————————
+    //
     // LAZY LOAD
-    // ————————————————————————————————————————
+    //
 
     $('.lazy').Lazy({
       // your configuration goes here
@@ -55,9 +50,9 @@ function allScript(){
     });
 
 
-    // ————————————————————————————————————————
+    //
     // MAILCHIMP
-    // ————————————————————————————————————————
+    //
     $('#mailchimp').submit(function(){
   		var mailchimpform = $(this);
       $('.newsletter__status').html('Wait...');
@@ -88,11 +83,11 @@ function allScript(){
       }
     );
 
-    // ————————————————————————————————————————
+    //
     // CLOSE MENU
-    // ————————————————————————————————————————
+    //
 
-    $('.menu__mobile_close').hammer().on('panright tap', function(){
+    $('.menu__mobile_close').on('click', function(){
       $('.menu__mobile').removeClass('is-open');
     })
 
@@ -143,3 +138,11 @@ $(function(){
   },
   smoothState = $('#page').smoothState(options).data('smoothState');
 });
+
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-16867745-1', 'auto');

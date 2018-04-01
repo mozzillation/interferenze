@@ -1,12 +1,1 @@
-@charset "UTF-8";
-/*
-Theme Name: Interferenze Beta
-Author: Giuliano Mozzillo
-Author URI: https://mozzillation.com
-Version: 1.0.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: interferenze
-*/
-
-@import 'frontend/css/style.css';
+@charset "UTF-8";@import 'frontend/css/style.css';
